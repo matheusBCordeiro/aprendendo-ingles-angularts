@@ -17,7 +17,12 @@
         <p>{{ rodadaFrase.fraseEng }}</p>
 
         <div class="form-group">
-          <textarea class="form-control" rows="3" (input)="atualizarResposta($event)"></textarea>
+          <textarea 
+            class="form-control"
+            rows="3" 
+            (input)="atualizarResposta($event)"
+            [value] = "resposta"
+          ></textarea>  
         </div>
         <div class="row">
           <div class="col">
