@@ -19,6 +19,8 @@ export class PainelComponent implements OnInit {
 
   public progresso: number = 0
 
+  public tentativas: number = 3
+
   constructor() { 
     this.atualizaResposta()
   }
@@ -28,11 +30,10 @@ export class PainelComponent implements OnInit {
 
   public atualizarResposta(resposta: Event): void {
     this.resposta = (<HTMLInputElement>resposta.target).value
-    console.log(this.resposta)
   }
 
   public verificarResposta() : void {
-    if(this.rodadaFrase.frasePtBr) {
+    if(this.rodadaFrase.frasePtBr == this.resposta) {
       alert('A tradução está correta')
 
       this.rodada++
@@ -41,7 +42,10 @@ export class PainelComponent implements OnInit {
 
       this.atualizaResposta()
     } else {
-      alert('A tradução está errada')
+      this.tentativas--
+      if(this.tentativas === -1) {
+        alert('Você perdeu todas as tentativas')
+      }
     }
   }
 
